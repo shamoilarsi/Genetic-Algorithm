@@ -1,6 +1,4 @@
-import math
 import random
-
 from DNA import DNA
 
 
@@ -36,8 +34,9 @@ class Population:
 
     def refill_population(self):
         for i in range(0, self.max_pop):
-            gene_a = self.mating_pool[math.floor(random.randint(0, len(self.mating_pool) - 1))]
-            gene_b = self.mating_pool[math.floor(random.randint(0, len(self.mating_pool) - 1))]
+            gene_a = random.choice(self.mating_pool)
+
+            gene_b = random.choice(self.mating_pool)
 
             gene_child = gene_a.crossover(gene_b)
             gene_child.mutate(self.mutation_rate)

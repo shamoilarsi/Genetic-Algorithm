@@ -1,5 +1,4 @@
 import random
-import math
 
 
 def new_character():
@@ -25,7 +24,7 @@ class DNA:
             if self.genes[i] == target[i]:
                 self.fitness += 1
         self.fitness /= len(target)
-        self.fitness = math.pow(self.fitness, len(target) / 2)
+        # self.fitness = self.fitness ** len(target)
 
     def crossover(self, gene_b):
         child = DNA(len(gene_b.genes))
