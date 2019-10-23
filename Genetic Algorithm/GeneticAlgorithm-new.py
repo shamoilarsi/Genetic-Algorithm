@@ -78,6 +78,7 @@ class Population:
         print("Mutation Rate : " + str(self.mutation_rate))
         print("Average Fitness : " + str("{:0.5f}".format(self.average_fitness())))
         print("Total Generations : " + str(self.generation))
+        return self.generation
 
 
 class DNA:
@@ -119,6 +120,7 @@ if __name__ == "__main__":
     max_pop = [500, 1000, 1500, 2000]
     mutationRate = 0.01
     time_array_bar = []
+    total_generations = []
     fig = plt.figure(figsize=(16,8))
     
     for i in range (0, 4):
@@ -146,17 +148,22 @@ if __name__ == "__main__":
         plt.ylabel('Max Fitness')
         plt.title('Fitness Graph when Population = ' + str(max_pop[i]))
 
-        my_algorithm.fully_evolved()
+        total_generations.append(my_algorithm.fully_evolved())
         print("Total Time : " + str(int(time.time() * 1000) - millis))
         time_array_bar.append(time_array[-1])
 
     plt.show() 
 
-    print(time_array_bar)
-    print(max_pop)
-
+    fig = plt.figure(figsize=(16,8))
+    
+    fig.add_subplot(121)
     plt.xlabel("Max Population")
     plt.ylabel("Time")
     plt.bar(range(4), time_array_bar, align='center', alpha=0.5)
     plt.xticks(range(4), max_pop)
+
+    fig.add_subplot(122)
+    plt.plot(max_pop, total_generations)
+    plt.xlabel("Max Population")
+    plt.ylabel("Total Generations")
     plt.show()
