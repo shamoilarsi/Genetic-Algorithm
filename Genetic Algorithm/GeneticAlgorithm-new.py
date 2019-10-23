@@ -38,7 +38,7 @@ class Genetic_Algorithm:
                 max_fitness = self.population_array[i].fitness
 
         for i in range(self.max_pop):
-            n = int((self.population_array[i].fitness / max_fitness) * len(self.target))
+            n = int((self.population_array[i].fitness / max_fitness)) #  * len(self.target))
             for j in range(n):
                 self.mating_pool.append(self.population_array[i])
         return max_fitness
