@@ -17,13 +17,13 @@ class Genetic_Algorithm:
         self.target = target
         self.max_pop = max_pop
         self.mutation_rate = mutation_rate
-        self.population_array = np.array([])
+        self.population_array = [] # np.array([])
         self.mating_pool = []
         self.finished = False
         self.generation = 0
 
         for i in range(max_pop):
-            self.population_array = np.append(self.population_array, DNA(len(self.target)))
+            self.population_array.append(DNA(len(self.target)))  # self.population_array = np.append(self.population_array, DNA(len(self.target)))
 
     def calc_fitness(self):
         for i in range(self.max_pop):
@@ -44,7 +44,7 @@ class Genetic_Algorithm:
         return max_fitness
 
     def refill_population(self):
-        for i in range(0, self.max_pop):
+        for i in range(self.max_pop):
             gene_a = random.choice(self.mating_pool)
             gene_b = random.choice(self.mating_pool)
 
@@ -68,7 +68,7 @@ class Genetic_Algorithm:
 
     def average_fitness(self):
         total_fitness = 0
-        for i in range(0, self.max_pop):
+        for i in range(self.max_pop):
             total_fitness += self.population_array[i].fitness
         return total_fitness / self.max_pop
 
@@ -101,11 +101,7 @@ class DNA:
         child = DNA(len(gene_b.genes))
 
         midpoint = random.randint(0, len(gene_b.genes))
-        for i in range(len(gene_b.genes)):
-            if i < midpoint:
-                child.genes[i] = self.genes[i]
-            else:
-                child.genes[i] = gene_b.genes[i]
+        child.genes = self.genes[:midpoint] + gene_b.genes[midpoint:]
 
         return child
 
