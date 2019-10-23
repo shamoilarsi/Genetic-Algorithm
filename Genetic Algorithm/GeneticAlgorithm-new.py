@@ -12,7 +12,7 @@ def new_character():
     return chr(temp)
 
 
-class Population:
+class Genetic_Algorithm:
     def __init__(self, target, max_pop, mutation_rate):
         self.target = target
         self.max_pop = max_pop
@@ -128,7 +128,7 @@ if __name__ == "__main__":
         fitness_array = []
 
         millis = int(time.time() * 1000)
-        my_algorithm = Population(target, max_pop[i], mutationRate)
+        my_algorithm = Genetic_Algorithm(target, max_pop[i], mutationRate)
         my_algorithm.calc_fitness()
 
         while not my_algorithm.finished:
